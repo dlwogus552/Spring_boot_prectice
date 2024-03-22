@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.layout.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout1.html}"
+      lang="en">
+
+<div layout:fragment="content">
+    <form action="/board/modify" method="post">
+        <input type="hidden" name="bno" th:value="${board.bno}">
+        <div class="mb-3 mt-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" class="form-control" id="title" th:value="${board.title}" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="content">Content:</label>
+            <textarea class="form-control" rows="5" id="content" name="content">[[${board.content}]]</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+        <button type="button" class="btn btn-secondary">Cancel</button>
+    </form>
+</div>

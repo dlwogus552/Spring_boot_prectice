@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}" lang="en">
+
+<div layout:fragment="content">
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Board Register
+                </div>
+                <div class="card-body">
+                    <form action="/board/modify" method="post" id="f1">
+                        <input type="hidden" name="bno" th:value="${dto.bno}">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Title</span>
+                            <input class="form-control col-sm-5" type="text" name="title" th:value="${dto.title}">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Content</span>
+                            <textarea class="form-control col-sm-5" rows="5" name="content">[[${dto.content}]]</textarea>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Writer</span>
+                            <input class="form-control col-sm-5" type="text" name="writer" th:value="${dto.writer}">
+                        </div>
+                        <div class="my-4">
+                            <div class="float-end">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-secondary" type="button">List</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script layout:fragment="script" th:inline="javascript">
+    document.querySelector(".btn-secondary").addEventListener("click",function (e){
+        e.preventDefault();
+        const link=[[${pageRequestDTO.getLink()}]]
+        self.location=`/board/list?${link}`
+    })
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}" lang="en">
+<div layout:fragment="content">
+    <div class="col">
+        <div>[[${fileList}]]</div>
+        <div class="card" th:if="${fileList !=null && fileList.size()>0}">
+            <div th:each="dto:${fileList}">
+                <div th:if="${dto.image}">
+                    <a th:href="|/upload/download/${dto.getLink()}|">
+                        <img th:src="|/upload/display/${dto.getLink()}|">
+                        <span>[[${dto.filename}]]</span>
+                    </a>
+                </div>
+                <div th:unless="${dto.image}">
+                    <a th:href="|/upload/download/${dto.getLink()}|">
+                        <img src="/images/attach.png">
+                        <span>[[${dto.filename}]]</span>
+                    </a>
+                </div>
+                <span>[[${dto.getLink()}]]</span>
+            </div>
+        </div>
+    </div>
+</div>

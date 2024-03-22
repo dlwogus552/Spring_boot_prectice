@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.layout.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout1.html}"
+      lang="en">
+
+<div layout:fragment="content">
+    <h2 th:text="${msg}"></h2>
+    <h2>전체 게시글 수 : [[${totalcount}]]</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Bno</th>
+            <th>Title</th>
+            <th>Writer</th>
+            <th>Visit Count</th>
+            <th>Post Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board,status:${boardList}">
+            <td th:text="${board.bno}"></td>
+            <td><a th:href="@{view(bno=${board.bno})}">[[${board.title}]]</a></td>
+            <td th:text="${board.writer}"></td>
+            <td th:text="${board.visitcount}"></td>
+            <td th:text="${board.postdate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
